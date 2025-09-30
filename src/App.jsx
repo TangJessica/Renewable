@@ -6,7 +6,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > window.innerHeight - 80);
+    const handleScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -45,27 +45,28 @@ function Header() {
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <img src="assets/logo.png" alt="Logo" className="logo" />
         <nav>
-          <a href="#transactions">Transactions</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
+        <Link to="/">HOME</Link>
+           <Link to="/team">TEAM</Link>
+           <Link to="/transactions">TRANSACTIONS</Link>
+           <Link to="/contact">CONTACT US</Link>
+           <Link to="/investor">
+             INVESTOR LOGIN
+           </Link>
         </nav>
       </header>
 
       {/* Hero Section */}
       <section className="hero">
         <video autoPlay loop muted playsInline className="bg-video">
-          <source src="/hero_video.mp4" type="video/mp4" />
+          <source src="assets/hero_video.mp4" type="video/mp4" />
         </video>
         {/* <div className="overlay"> */}
         <div className="container hero-inner">
-          <h1>Comprehensive and scalable capital solutions and strategic advisory</h1>
+          <h2>Comprehensive and scalable capital solutions and strategic advisory</h2>
           <p className="eyebrow">Your Experts in Renewable Energy Infrastructure</p>
         </div>
         {/* </div> */}
       </section>
-
-      {/* Dummy Content */}
-      <section style={{ height: "200vh", background: "#f5f5f5" }}></section>
     </div>
     </>
   );
@@ -430,7 +431,7 @@ function Transactions() {
 
 function Contact() {
   return (
-    <main className="container contact-page">
+    <div className="container">
       <h1>Contact Us</h1>
       <p>
         For inquiries please email:{" "}
@@ -459,24 +460,33 @@ function Contact() {
           Send
         </button>
       </form>
-    </main>
+    </div>
   );
 }
 
-function Investor() {
+const Investor = () =>{
+
+  const [error, setError] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError(true); // Always show error
+  };
+
   return (
-    <main className="container">
-      <h1>Investor Login</h1>
-      <p>
-        This page is a placeholder. Link your private investor portal here or
-        implement authentication.
-      </p>
-      <p>
-        <a className="btn" href="https://example.com">
-          Go to Portal (example)
-        </a>
-      </p>
-    </main>
+    <div class="container">
+    <div class="welcome">
+      <span>Welcome to the</span> Investor Portal
+    </div>
+    
+    <div class="login-box">
+      <form  onSubmit={handleSubmit}>
+        <input type="text" name="username" placeholder="Username (email)" required />
+        <input type="password" name="password" placeholder="Password" required />
+        {error && <div className="error-message">Invalid username or password</div>}
+        <button type="submit" class="login-button">Login</button>
+      </form>
+    </div>
+  </div>
   );
 }
 
