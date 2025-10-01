@@ -9,11 +9,16 @@ import {
 } from "react-router-dom";
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // Handle scroll to add "scrolled" class
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -32,7 +37,7 @@ function Header() {
                 advisory
               </h2>
               <p className="eyebrow">
-                Your Experts in Renewable Energy Infrastructure
+                Your Experts In Renewable Energy Infrastructure
               </p>
             </div>
           </section>
@@ -80,19 +85,36 @@ function Header() {
 
   return (
     <div className="App">
-      {/* Header */}
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <img src="/assets/logo.png" alt="Logo" className="logo" />
-        <nav>
-          <Link to="/">HOME</Link>
-          <Link to="/team">TEAM</Link>
-          <Link to="/transactions">TRANSACTIONS</Link>
-          <Link to="/contact">CONTACT US</Link>
-          <Link to="/investor">INVESTOR LOGIN</Link>
+
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          &#9776; {/* This is the ≡ symbol */}
+          <span className="menu-text">Menu</span>
+        </button>
+
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            HOME
+          </Link>
+          <Link to="/team" onClick={() => setMenuOpen(false)}>
+            TEAM
+          </Link>
+          <Link to="/transactions" onClick={() => setMenuOpen(false)}>
+            TRANSACTIONS
+          </Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>
+            CONTACT US
+          </Link>
+          <Link to="/investor" onClick={() => setMenuOpen(false)}>
+            INVESTOR LOGIN
+          </Link>
         </nav>
       </header>
-
-      {/* Dynamic Hero Section */}
       {renderHeroSection()}
     </div>
   );
@@ -213,7 +235,7 @@ function Home() {
 function Team() {
   return (
     <main className="container">
-      <h2 className="transactions-heading">Meet the Experts</h2>
+      <h2 className="page-heading">Meet the Experts</h2>
 
       <section className="team-section">
         <div className="team-member">
@@ -396,7 +418,7 @@ function Transactions() {
     <main className="container">
       <section className="transactions-page">
         <div className="container">
-          <h2 className="transactions-heading">Investment Banking Services</h2>
+          <h2 className="page-heading">Investment Banking Services</h2>
           <div className="transactions-list">
             {transactions.map((tx, index) => (
               <a
@@ -469,7 +491,7 @@ function Contact() {
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     const data = await response.json();
@@ -484,28 +506,24 @@ function Contact() {
   };
 
   return (
-    <div className="container">
-      <h1>Contact Us</h1>
-      {/* <p>
-        For inquiries please email:{" "}
-        <a href="mailto:info@catalinaenergycapital.com">
-          info@catalinaenergycapital.com
-        </a>
-      </p> */}
-      <form className="contact-form" onSubmit={onSubmit}>
+    <div className="contact-form">
+      <h1 className="page-heading">Contact Us</h1>
+      <form onSubmit={onSubmit}>
         <label>
           Name
-          <input type="text" name="name" required/>
+          <input type="text" name="name" required />
         </label>
         <label>
           Email
-          <input type="email" name="email" required/>
+          <input type="email" name="email" required />
         </label>
         <label>
           Message
-        <textarea name="message" rows={6} required></textarea>
+          <textarea name="message" rows={6} required></textarea>
         </label>
-        <button className="btn" type="submit">Send</button>
+        <button className="btn" type="submit">
+          Send
+        </button>
       </form>
       <span>{result}</span>
     </div>
@@ -521,10 +539,8 @@ const Investor = () => {
 
   return (
     <div class="container">
-      <div class="welcome">
-        <span>Welcome to the</span> Investor Portal
-      </div>
-
+      <div class="contact"> 
+      <h2 className="page-heading">Welcome to the Investor Portal</h2>
       <div class="login-box">
         <form onSubmit={handleSubmit}>
           <input
@@ -547,6 +563,7 @@ const Investor = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };
