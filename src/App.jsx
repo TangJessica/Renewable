@@ -1,74 +1,100 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  return (
-    // <div className="home-page">
-    //<header >
 
-    //   <div className="container header-inner">
-    //     <Link className="logo" to="/">
-    //       <img src="/assets/logo.png" alt="Catalina Energy Capital logo" />
-    //     </Link>
-    //     <nav className="site-nav" id="site-nav">
-    //       <Link to="/">Home</Link>
-    //       <Link to="/team">Team</Link>
-    //       <Link to="/transactions">Transactions</Link>
-    //       <Link to="/contact">Contact Us</Link>
-    //       <Link to="/investor" className="btn btn-outline">
-    //         Investor Login
-    //       </Link>
-    //     </nav>
-    //     <button
-    //       className="hamburger"
-    //       onClick={() =>
-    //         document.getElementById("site-nav").classList.toggle("open")
-    //       }
-    //       aria-label="Toggle menu"
-    //     >
-    //       &equiv;
-    //       <span className="menu">Menu</span>
-    //     </button>
-    //   </div>
-    // </header>
-    <>
-       <div className="App">
+  const renderHeroSection = () => {
+    switch (location.pathname) {
+      case "/":
+        return (
+          <section className="hero">
+            <video autoPlay loop muted playsInline className="bg-video">
+              <source src="/assets/hero_video.mp4" type="video/mp4" />
+            </video>
+            <div className="container hero-inner">
+              <h2>
+                Comprehensive and scalable capital solutions and strategic
+                advisory
+              </h2>
+              <p className="eyebrow">
+                Your Experts in Renewable Energy Infrastructure
+              </p>
+            </div>
+          </section>
+        );
+      case "/team":
+        return (
+          <section className="hero image-hero">
+            <img src="/assets/powerplant.jpg" alt="Team" className="bg-image" />
+          </section>
+        );
+      case "/transactions":
+        return (
+          <section className="hero image-hero">
+            <img
+              src="/assets/solar-panels.jpg"
+              alt="Transactions"
+              className="bg-image"
+            />
+          </section>
+        );
+      case "/contact":
+        return (
+          <section className="hero image-hero">
+            <img
+              src="/assets/contact-us-hero.jpg"
+              alt="Contact"
+              className="bg-image"
+            />
+          </section>
+        );
+      case "/investor":
+        return (
+          <section className="hero image-hero">
+            <img
+              src="/assets/solar-hero.webp"
+              alt="Investor Login"
+              className="bg-image"
+            />
+          </section>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="App">
       {/* Header */}
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <img src="assets/logo.png" alt="Logo" className="logo" />
+        <img src="/assets/logo.png" alt="Logo" className="logo" />
         <nav>
-        <Link to="/">HOME</Link>
-           <Link to="/team">TEAM</Link>
-           <Link to="/transactions">TRANSACTIONS</Link>
-           <Link to="/contact">CONTACT US</Link>
-           <Link to="/investor">
-             INVESTOR LOGIN
-           </Link>
+          <Link to="/">HOME</Link>
+          <Link to="/team">TEAM</Link>
+          <Link to="/transactions">TRANSACTIONS</Link>
+          <Link to="/contact">CONTACT US</Link>
+          <Link to="/investor">INVESTOR LOGIN</Link>
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <video autoPlay loop muted playsInline className="bg-video">
-          <source src="assets/hero_video.mp4" type="video/mp4" />
-        </video>
-        {/* <div className="overlay"> */}
-        <div className="container hero-inner">
-          <h2>Comprehensive and scalable capital solutions and strategic advisory</h2>
-          <p className="eyebrow">Your Experts in Renewable Energy Infrastructure</p>
-        </div>
-        {/* </div> */}
-      </section>
+      {/* Dynamic Hero Section */}
+      {renderHeroSection()}
     </div>
-    </>
   );
 }
 
@@ -187,6 +213,8 @@ function Home() {
 function Team() {
   return (
     <main className="container">
+      <h2 className="transactions-heading">Meet the Experts</h2>
+
       <section className="team-section">
         <div className="team-member">
           <img
@@ -464,8 +492,7 @@ function Contact() {
   );
 }
 
-const Investor = () =>{
-
+const Investor = () => {
   const [error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -474,21 +501,35 @@ const Investor = () =>{
 
   return (
     <div class="container">
-    <div class="welcome">
-      <span>Welcome to the</span> Investor Portal
+      <div class="welcome">
+        <span>Welcome to the</span> Investor Portal
+      </div>
+
+      <div class="login-box">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username (email)"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          {error && (
+            <div className="error-message">Invalid username or password</div>
+          )}
+          <button type="submit" class="login-button">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
-    
-    <div class="login-box">
-      <form  onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username (email)" required />
-        <input type="password" name="password" placeholder="Password" required />
-        {error && <div className="error-message">Invalid username or password</div>}
-        <button type="submit" class="login-button">Login</button>
-      </form>
-    </div>
-  </div>
   );
-}
+};
 
 export default function App() {
   return (
