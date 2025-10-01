@@ -60,7 +60,10 @@ a{
 .hamburger{display:none;background:none;border:0;font-size:2rem}
 .menu{display:none;background:none;border:0;font-size:.7rem}
 
-.hero{background:linear-gradient(180deg, rgba(11,31,58,0.03), rgba(255,255,255,0));padding:5rem 0}
+.hero{
+  background:linear-gradient(180deg, rgba(11,31,58,0.03), rgba(255,255,255,0));
+  /* padding:5rem 0 */
+}
 .hero-inner h2{      
   font-family: 'Red Hat Display', sans-serif;
   font-weight: 600;       
@@ -429,6 +432,8 @@ nav a {
 /* Hero Section */
 .hero {
   position: relative;
+  top: 0;
+  left: 0;
   height: 100vh;
   width: 100%;
   overflow: hidden;
@@ -461,6 +466,7 @@ nav a {
 .welcome {
   font-size: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .welcome span {
@@ -516,4 +522,21 @@ input[type="password"] {
 .error-message {
   color: red;
   margin-bottom: 10px;
+}
+.image-hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills without distortion */
+  display: block;
 }
