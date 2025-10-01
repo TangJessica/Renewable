@@ -47,7 +47,7 @@ function Header() {
         return (
           <section className="hero image-hero">
             <img
-              src="/assets/solar-panels.jpg"
+              src="/assets/panel.jpg"
               alt="Transactions"
               className="bg-image"
             />
@@ -67,7 +67,7 @@ function Header() {
         return (
           <section className="hero image-hero">
             <img
-              src="/assets/solar-hero.webp"
+              src="/assets/investor-hero.avif"
               alt="Investor Login"
               className="bg-image"
             />
@@ -458,36 +458,56 @@ function Transactions() {
 }
 
 function Contact() {
+  const [result, setResult] = React.useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "4e31fe5a-32ba-4226-ac1c-e2dedd41d395");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Confirmed Submission! We will reach out shortly");
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
+  };
+
   return (
     <div className="container">
       <h1>Contact Us</h1>
-      <p>
+      {/* <p>
         For inquiries please email:{" "}
         <a href="mailto:info@catalinaenergycapital.com">
           info@catalinaenergycapital.com
         </a>
-      </p>
-      <form
-        className="contact-form"
-        action="mailto:info@catalinaenergycapital.com"
-        method="post"
-        encType="text/plain"
-      >
+      </p> */}
+      <form className="contact-form" onSubmit={onSubmit}>
         <label>
           Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" required/>
         </label>
         <label>
           Email
-          <input type="email" name="email" required />
+          <input type="email" name="email" required/>
         </label>
         <label>
-          Message<textarea name="message" rows="6" required></textarea>
+          Message
+        <textarea name="message" rows={6} required></textarea>
         </label>
-        <button className="btn" type="submit">
-          Send
-        </button>
+        <button className="btn" type="submit">Send</button>
       </form>
+      <span>{result}</span>
     </div>
   );
 }
