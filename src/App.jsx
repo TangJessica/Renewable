@@ -94,7 +94,7 @@ function Header() {
           aria-label="Toggle menu"
         >
           &#9776; {/* This is the ≡ symbol */}
-          <span className="menu-text">Menu</span>
+          <span className="menu-text">MENU</span>
         </button>
 
         <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
