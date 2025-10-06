@@ -265,7 +265,7 @@ function Team() {
 
         <div className="team-member">
           <img
-            src="/assets/aidan.png"
+            src="/assets/aidan.jpg"
             alt="Aidan Acosta"
             className="team-photo"
           />
