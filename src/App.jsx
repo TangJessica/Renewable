@@ -7,6 +7,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
+import hero from '/assets/hero_video.mp4'
 
 function Header() {
   const location = useLocation();
@@ -29,7 +30,7 @@ function Header() {
         return (
           <section className="hero">
             <video autoPlay loop muted playsInline className="bg-video">
-              <source src="/assets/hero_video.mp4" type="video/mp4" />
+              <source src={hero} type="video/mp4" />
             </video>
             <div className="container hero-inner">
               <h2>
@@ -265,7 +266,7 @@ function Team() {
 
         <div className="team-member">
           <img
-            src="/assets/aidan.png"
+            src="/assets/aidan.jpg"
             alt="Aidan Acosta"
             className="team-photo"
           />
@@ -273,20 +274,13 @@ function Team() {
             <h3 className="team-name">Aidan Acosta</h3>
             <p className="team-role">Director of Finance</p>
             <p className="team-bio">
-              Aidan is a former Project Finance Associate at Sunrun, where he
-              played a key role in executing over $2.6 billion in senior and
-              Holdco debt financings. He also led the structuring and execution
-              of a $2.8 billion non-recourse revolver, a $225 million Safe
-              Harbor credit facility, and a $300 million corporate interest rate
-              hedging program, supporting Sunrun’s growth as a leading
-              residential solar provider.
+            Aidan is a former Project Finance Associate at Sunrun, where he played a key role in executing over $2.6 billion in senior and Holdco debt financings across public and private markets. Aidan also supported an $895 million upsize and term extension of a non-recourse revolver and managed a $225 million safe harbored inventory-based revolver and a $300 million corporate interest rate hedging program, further solidifying Sunrun's position as the United States' leading residential solar provider.
             </p>
             <p className="team-bio">
-              Prior to joining Sunrun, he was an Investment Banking Analyst at
-              Morgan Stanley, advising on mergers, acquisitions, and capital
-              markets transactions for clients such as Coca-Cola, Vista Outdoor,
-              and Driven Brands. His work included multiple public offerings and
-              debt facilities totaling over $1 billion.
+            Prior to joining Sunrun, Aidan was an Investment Banking Analyst at Morgan Stanley, where he advised on mergers, acquisitions, and capital markets transactions for clients such as Coca-Cola, Tyson Foods, Vista Outdoor, Backcountry.com and Driven Brands. His work across the debt and equity capital markets had combined transaction value of over $1.5 billion.
+            </p>
+            <p className="team-bio">
+            Aidan holds a Bachelor of Arts degree in Economics from Middlebury College.
             </p>
           </div>
         </div>
