@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,13 +23,21 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75; // half speed
+    }
+  }, []);
+
   const renderHeroSection = () => {
     switch (location.pathname) {
       case "/":
         return (
           <section className="hero">
-            <video autoPlay loop muted playsInline className="bg-video">
-              <source src="/assets/hero_video.mp4" type="video/mp4" />
+            <video ref={videoRef} autoPlay loop muted playsInline className="bg-video">
+              <source src="/assets/hero_v2.mp4" type="video/mp4" />
             </video>
             <div className="container hero-inner">
               <h2>
@@ -440,9 +448,7 @@ function Transactions() {
 
       <section className="transactions-page">
         <div className="container">
-          <h4 className="consulting-heading">
-            Consulting Engagements (Previous)
-          </h4>
+        <h2 className="page-heading">Consulting Engagements (Previous)</h2>
           <div className="transactions-list">
             {consulting.map((tx, index) => (
               <a
