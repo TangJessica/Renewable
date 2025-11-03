@@ -381,6 +381,13 @@ const transactions = [
       "Interconnection support facility for a 550MW portfolio of utility-scale solar and storage project",
     link: "",
   },
+  {
+    logo: "/assets/transactions/carson_power.jpg",
+    title: "Carson Power",
+    date: "September 2025",
+    description: "Eight figure interconnection deposit facility for upstate New York solar and battery storage portfolio",
+    link: "https://carson-power.com/",
+  }
 ];
 
 const consulting = [
@@ -408,12 +415,6 @@ const consulting = [
     description: "Northeast focused community solar developer",
     link: "https://www.acpowerllc.com/",
   },
-  {
-    logo: "/assets/transactions/carson_power.jpg",
-    title: "Carson Power",
-    description: "Eight figure interconnection deposit facility for upstate New York solar and battery storage portfolio",
-    link: "https://carson-power.com/",
-  }
 ];
 
 function Transactions() {
