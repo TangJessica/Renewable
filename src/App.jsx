@@ -409,7 +409,7 @@ const consulting = [
     link: "https://www.acpowerllc.com/",
   },
   {
-    logo: "/assets/transactions/carson_power.png",
+    logo: "/assets/transactions/carson_power.jpg",
     title: "Carson Power",
     description: "Eight figure interconnection deposit facility for upstate New York solar and battery storage portfolio",
     link: "https://carson-power.com/",
