@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,6 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import hero from '/assets/hero_video.mp4'
 
 function Header() {
   const location = useLocation();
@@ -24,13 +23,21 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75; // half speed
+    }
+  }, []);
+
   const renderHeroSection = () => {
     switch (location.pathname) {
       case "/":
         return (
           <section className="hero">
-            <video autoPlay loop muted playsInline className="bg-video">
-              <source src={hero} type="video/mp4" />
+            <video ref={videoRef} autoPlay loop muted playsInline className="bg-video">
+              <source src="/assets/hero_v2.mp4" type="video/mp4" />
             </video>
             <div className="container hero-inner">
               <h2>
@@ -275,11 +282,7 @@ function Team() {
             <p className="team-role">Director of Finance</p>
             <p className="team-bio">
             Aidan is a former Project Finance Associate at Sunrun, where he played a key role in executing over $2.6 billion in senior and Holdco debt financings across public and private markets. Aidan also supported an $895 million upsize and term extension of a non-recourse revolver and managed a $225 million safe harbored inventory-based revolver and a $300 million corporate interest rate hedging program, further solidifying Sunrun's position as the United States' leading residential solar provider.
-            </p>
-            <p className="team-bio">
             Prior to joining Sunrun, Aidan was an Investment Banking Analyst at Morgan Stanley, where he advised on mergers, acquisitions, and capital markets transactions for clients such as Coca-Cola, Tyson Foods, Vista Outdoor, Backcountry.com and Driven Brands. His work across the debt and equity capital markets had combined transaction value of over $1.5 billion.
-            </p>
-            <p className="team-bio">
             Aidan holds a Bachelor of Arts degree in Economics from Middlebury College.
             </p>
           </div>
@@ -378,6 +381,13 @@ const transactions = [
       "Interconnection support facility for a 550MW portfolio of utility-scale solar and storage project",
     link: "",
   },
+  {
+    logo: "/assets/transactions/carson_power.jpg",
+    title: "Carson Power",
+    date: "September 2025",
+    description: "Eight figure interconnection deposit facility for upstate New York solar and battery storage portfolio",
+    link: "https://carson-power.com/",
+  }
 ];
 
 const consulting = [
@@ -441,9 +451,7 @@ function Transactions() {
 
       <section className="transactions-page">
         <div className="container">
-          <h4 className="consulting-heading">
-            Consulting Engagements (Previous)
-          </h4>
+        <h2 className="page-heading">Consulting Engagements (Previous)</h2>
           <div className="transactions-list">
             {consulting.map((tx, index) => (
               <a
