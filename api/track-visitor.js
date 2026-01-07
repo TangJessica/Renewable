@@ -1,6 +1,6 @@
-import { GoogleSpreadsheet } from "google-spreadsheet";
+const { GoogleSpreadsheet } = require("google-spreadsheet");
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   try {
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
 
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     });
 
-    await doc.loadInfo();
+    await doc.loadInfo();  // <- Will throw if auth fails
     const sheet = doc.sheetsByIndex[0];
 
     const ip =
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } catch (err) {
-    console.error("Google Sheets error:", err.message);
+    console.error("Google Sheets error full:", err); // log full error
     res.status(500).json({ error: err.message });
   }
-}
+};
