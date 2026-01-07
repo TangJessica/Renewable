@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     await sheet.addRow({
       timestamp: new Date().toISOString(),
       ip,
-      country: req.headers["x-vercel-ip-country"] || "",
+      country: "",
       city: "",
       region: "",
       user_agent: req.headers["user-agent"],
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ success: true });
   } catch (err) {
-    console.error("Google Sheets error:", err);
+    console.error("Google Sheets error:", err.message);
     res.status(500).json({ error: err.message });
   }
 }
