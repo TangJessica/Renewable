@@ -34,6 +34,8 @@ module.exports = async (req, res) => {
       country: geoData.location?.country?.name || "",
       region: geoData.location?.region?.name || "",
       city: geoData.location?.city || "",
+      latitude: geoData.location?.latitude || "",
+      longitude: geoData.location?.longitude || "",
       user_agent: req.headers["user-agent"] || "",
     });
 
