@@ -26,5 +26,35 @@
     <script>
       fetch("/api/track-visitor");
     </script>
+    <script>
+      const sessionId = crypto.randomUUID();
+    
+      // Initial visit
+      fetch(`/api/track-visitor?sid=${sessionId}`);
+    
+      let engaged = false;
+      let startTime = Date.now();
+    
+      function markEngaged() {
+        if (engaged) return;
+        engaged = true;
+    
+        const duration = Math.round((Date.now() - startTime) / 1000);
+    
+        fetch(`/api/engagement`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sessionId,
+            duration
+          })
+        });
+      }
+    
+      // Engagement signals
+      window.addEventListener("scroll", markEngaged, { once: true });
+      window.addEventListener("click", markEngaged, { once: true });
+      setTimeout(markEngaged, 8000); // stayed 8 seconds
+    </script>
   </body>
 </html>

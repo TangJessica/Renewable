@@ -31,12 +31,15 @@ module.exports = async (req, res) => {
     await sheet.addRow({
       timestamp: new Date().toISOString(),
       ip,
+      session_id: req.query.sid,
       country: geoData.location?.country?.name || "",
       region: geoData.location?.region?.name || "",
       city: geoData.location?.city || "",
       latitude: geoData.location?.latitude || "",
       longitude: geoData.location?.longitude || "",
       user_agent: req.headers["user-agent"] || "",
+      engaged: false,
+      duration_seconds: 0
     });
 
     res.status(200).json({ success: true });
