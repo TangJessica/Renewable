@@ -140,9 +140,7 @@ function Footer() {
         />
 
         <p className="disclaimer">
-          Securities offered through Hollister Associates, LLC, Member FINRA /
-          SIPC. Catalina Energy Capital and Hollister Associates, LLC are not
-          affiliated entities.
+        Securities offered through <a href="https://gtsecurities.net/">GT Securities, Inc.</a>, member FINRA, SIPC.
         </p>
         <p className="disclaimer">
           © Copyright 2025 Catalina Energy Capital. All Rights Reserved.
