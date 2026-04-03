@@ -140,7 +140,7 @@ function Footer() {
         />
 
         <p className="disclaimer">
-        Securities offered through <a href="https://gtsecurities.net/">GT Securities, Inc.</a>, member FINRA, SIPC.
+        Securities offered through <u><a href="https://gtsecurities.net/">GT Securities, Inc.</a></u>, member <u><a href="https://www.finra.org/">FINRA</a></u>, <u><a href="https://www.sipc.org/">SIPC</a></u>.
         </p>
         <p className="disclaimer">
           © Copyright 2025 Catalina Energy Capital. All Rights Reserved.
