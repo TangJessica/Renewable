@@ -7,6 +7,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
+import TransactionsCarousel from "./components/TransactionsCarousel";
 
 function Header() {
   const location = useLocation();
@@ -387,7 +388,43 @@ const transactions = [
     date: "September 2025",
     description: "Eight figure interconnection deposit facility for upstate New York solar and battery storage portfolio",
     link: "https://carson-power.com/",
-  }
+  },
+    {
+    logo: "/assets/transactions/UAM logo.PNG",
+    title: "Utility Asset Management",
+    date: "December 2024",
+    description: "Grid Stability Technology Service Provider, Growth Equity Raise",
+    link: "",
+  },
+  {
+    logo: "/assets/transactions/Orenda.png",
+    title: "Orenda",
+    date: "Consulting Engagement",
+    description: "Northeast battery storage developer",
+    link: "https://orendapower.com/",
+  },
+  {
+    logo: "/assets/transactions/pedal.png",
+    title: "Pedal Steel​",
+    date: "Consulting Engagement",
+    description: "'Heartland' utility-scale solar and storage developer​",
+    link: "https://pedalsteelsolar.com/",
+  },
+  {
+    logo: "/assets/transactions/headwater.jpg",
+    title: "Headwater",
+    date: "Consulting Engagement",
+    description: "Utility-scale solar and storage developer​",
+    link: "https://headwaterenergy.com/",
+  },
+  {
+    logo: "/assets/transactions/acpower.png",
+    title: "AC Power",
+    date: "Consulting Engagement",
+    description: "Northeast focused community solar developer",
+    link: "https://www.acpowerllc.com/",
+  },
+
 ];
 
 const consulting = [
@@ -419,65 +456,138 @@ const consulting = [
 
 function Transactions() {
   return (
-    <main className="container">
-      <section className="transactions-page">
-        <div className="container">
-          <h2 className="page-heading">Investment Banking Services</h2>
-          <div className="transactions-list">
-            {transactions.map((tx, index) => (
-              <a
-                href={tx.link}
-                key={index}
-                //  target="_blank"
-                className="transaction-card-link"
-              >
-                <div className="transaction-card" key={index}>
-                  {tx.logo && (
-                    <img
-                      src={tx.logo}
-                      alt={`${tx.title} logo`}
-                      className="transaction-logo"
-                    />
-                  )}
-                  <h3 className="transaction-title">{tx.title}</h3>
-                  <p className="transaction-date">{tx.date}</p>
-                  <p className="transaction-desc">{tx.description}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div>
+      <h2 className="page-heading">Investment Banking Services</h2>
+      <TransactionsCarousel transactions={transactions} />
+      {/* <h2 className="page-heading">Consulting Engagements (Previous)</h2> */}
+    </div>
+    // <main className="container">
+    //   <section className="transactions-page">
+    //     <div className="container">
+    //       <h2 className="page-heading">Investment Banking Services</h2>
+    //       <div className="transactions-list">
+    //         {transactions.map((tx, index) => (
+    //           <a
+    //             href={tx.link}
+    //             key={index}
+    //             //  target="_blank"
+    //             className="transaction-card-link"
+    //           >
+    //             <div className="transaction-card" key={index}>
+    //               {tx.logo && (
+    //                 <img
+    //                   src={tx.logo}
+    //                   alt={`${tx.title} logo`}
+    //                   className="transaction-logo"
+    //                 />
+    //               )}
+    //               <h3 className="transaction-title">{tx.title}</h3>
+    //               <p className="transaction-date">{tx.date}</p>
+    //               <p className="transaction-desc">{tx.description}</p>
+    //             </div>
+    //           </a>
+    //         ))}
+    //       </div>
+    //     </div>
+    //   </section>
 
-      <section className="transactions-page">
-        <div className="container">
-        <h2 className="page-heading">Consulting Engagements (Previous)</h2>
-          <div className="transactions-list">
-            {consulting.map((tx, index) => (
-              <a
-                href={tx.link}
-                key={index}
-                //  target="_blank"
-                className="transaction-card-link"
-              >
-                <div className="transaction-card" key={index}>
-                  {tx.logo && (
-                    <img
-                      src={tx.logo}
-                      alt={`${tx.title} logo`}
-                      className="transaction-logo"
-                    />
-                  )}
-                  <h3 className="transaction-title">{tx.title}</h3>
-                  <p className="transaction-date">{tx.date}</p>
-                  <p className="transaction-desc">{tx.description}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
+    //   <section className="transactions-page">
+    //     <div className="container">
+    //     <h2 className="page-heading">Consulting Engagements (Previous)</h2>
+    //       <div className="transactions-list">
+    //         {consulting.map((tx, index) => (
+    //           <a
+    //             href={tx.link}
+    //             key={index}
+    //             //  target="_blank"
+    //             className="transaction-card-link"
+    //           >
+    //             <div className="transaction-card" key={index}>
+    //               {tx.logo && (
+    //                 <img
+    //                   src={tx.logo}
+    //                   alt={`${tx.title} logo`}
+    //                   className="transaction-logo"
+    //                 />
+    //               )}
+    //               <h3 className="transaction-title">{tx.title}</h3>
+    //               <p className="transaction-date">{tx.date}</p>
+    //               <p className="transaction-desc">{tx.description}</p>
+    //             </div>
+    //           </a>
+    //         ))}
+    //       </div>
+    //     </div>
+    //   </section>
+
+
+    //   <div
+    //     id="transactionsCarousel"
+    //     className="carousel slide"
+    //     data-bs-ride="carousel"
+    //   >
+    //     {/* Indicators */}
+    //     <div className="carousel-indicators">
+    //       {transactions.map((_, index) => (
+    //         <button
+    //           key={index}
+    //           type="button"
+    //           data-bs-target="#transactionsCarousel"
+    //           data-bs-slide-to={index}
+    //           className={index === 0 ? "active" : ""}
+    //           aria-current={index === 0 ? "true" : undefined}
+    //         />
+    //       ))}
+    //     </div>
+
+    //     {/* Slides */}
+    //     <div className="carousel-inner">
+    //       {transactions.map((tx, index) => (
+    //         <div
+    //           key={index}
+    //           className={`carousel-item ${index === 0 ? "active" : ""}`}
+    //         >
+    //           <a
+    //             href={tx.link}
+    //             className="transaction-card-link"
+    //           >
+    //             <div className="transaction-card">
+    //               {tx.logo && (
+    //                 <img
+    //                   src={tx.logo}
+    //                   alt={`${tx.title} logo`}
+    //                   className="transaction-logo"
+    //                 />
+    //               )}
+    //               <h3 className="transaction-title">{tx.title}</h3>
+    //               <p className="transaction-date">{tx.date}</p>
+    //               <p className="transaction-desc">{tx.description}</p>
+    //             </div>
+    //           </a>
+    //         </div>
+    //       ))}
+    //     </div>
+
+    //     {/* Controls */}
+    //     <button
+    //       className="carousel-control-prev"
+    //       type="button"
+    //       data-bs-target="#transactionsCarousel"
+    //       data-bs-slide="prev"
+    //     >
+    //       <span className="carousel-control-prev-icon" />
+    //     </button>
+
+    //     <button
+    //       className="carousel-control-next"
+    //       type="button"
+    //       data-bs-target="#transactionsCarousel"
+    //       data-bs-slide="next"
+    //     >
+    //       <span className="carousel-control-next-icon" />
+    //     </button>
+    //   </div>
+    // </main>
   );
 }
 

@@ -389,6 +389,7 @@ a {
   margin-bottom: 10px;
   text-align: center;
   color: #1a1a1a;
+  padding-top: 20px;
 }
 .consulting-heading {
   font-family: "Playfair Display", serif;
@@ -419,8 +420,9 @@ a {
   height: 100%;
   padding: 1.5rem;
   border-radius: 12px;
-  
+  margin-bottom: 10px;
 }
+
 .transaction-card-link {
   display: block;
   width: 100%; 
@@ -462,7 +464,7 @@ a {
   font-size: 1rem;
   font-weight: 400;
   color: #333;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 /* Responsive */
@@ -710,5 +712,76 @@ input[type="password"] {
     margin: 0 auto;
     max-width: 90%;
   }
+}.carousel-wrapper {
+  overflow: hidden; 
+  width: 80%;
+  padding: 16px 0;
+  margin: 0 auto;
 }
 
+.carousel-track { 
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.transaction-card {
+  flex: 0 0 300px; 
+  height: 350px; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+} 
+
+/* .transaction-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 12px;
+} */
+
+/* .transaction-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 8px;
+} */
+
+
+/* .transaction-date,
+.transaction-desc {
+  font-size: 12px;
+  margin: 2px 0;
+  color: #555;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+} */
+
+/* Infinite scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.carousel-wrapper:hover .carousel-track {
+  animation-play-state: paused;
+}
