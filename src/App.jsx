@@ -391,7 +391,7 @@ const transactions = [
     logo: "/assets/transactions/UAM logo.PNG",
     title: "Utility Asset Management",
     date: "December 2024",
-    description: "Grid Stability Technology Service Provider, Growth Equity Raise",
+    description: "Grid stability technology service provider, growth equity raise",
     link: "",
   },
   {
@@ -422,6 +422,21 @@ const transactions = [
     description: "Northeast focused community solar developer",
     link: "https://www.acpowerllc.com/",
   },
+  {
+    logo: "/assets/transactions/CEF.png",
+    title: "Cooperative Energy Futures",
+    date: "February 2026",
+    description: "Minnesota community solar portfolio refinancing",
+    link: "https://www.cooperativeenergyfutures.com/",
+  },
+  {
+    logo: "/assets/transactions/Gridi.png",
+    title: "Gridi",
+    date: "May 2026",
+    description: "New York State battery storage interconnection facility",
+    link: "https://www.gridi.dev/",
+  },
+
 
 ];
 
